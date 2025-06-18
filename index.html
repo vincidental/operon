@@ -93,22 +93,21 @@
         /* Logo Styling and Animation */
         #logo {
             position: fixed;
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            color: var(--text-color);
             z-index: 100;
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 250px; /* Adjust size as needed */
         }
-        #logo img {
-            width: 100%;
-            height: auto;
-        }
-
+        #logo .dot { color: var(--accent-color); }
         #logo.top-left {
             top: 2rem;
             left: 2rem;
-            width: 150px; /* Adjust smaller size */
+            font-size: 1.5rem;
             transform: translate(0, 0);
         }
         
@@ -262,4 +261,419 @@
             flex-wrap: wrap;
         }
         .metric-item {
-            fl
+            flex-basis: 200px;
+        }
+        .metric-item .number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+        .metric-item .label {
+            font-size: 1rem;
+            line-height: 1.4;
+            color: var(--secondary-text-color);
+        }
+        
+        /* --- TEAM LOGOS SECTION --- */
+        .logo-grid {
+            display: flex;
+            flex-direction: column; /* Stack rows vertically */
+            justify-content: center;
+            align-items: center;
+            gap: 2rem; /* Space between rows */
+            margin-top: 3rem;
+        }
+        .logo-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2.5rem; /* Space between logos */
+            width: 100%;
+        }
+        .partner-logo {
+            max-height: 35px;
+            width: auto;
+            transition: filter 0.3s ease;
+            filter: grayscale(1) opacity(0.7);
+        }
+        .partner-logo:hover {
+            filter: none;
+        }
+
+        /* Contact link */
+        .contact-link {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--secondary-text-color);
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .contact-link:hover { color: var(--accent-color); }
+        .contact-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: var(--accent-color);
+            bottom: -5px;
+            left: 0;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+        .contact-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* Down Arrow */
+        .scroll-down-arrow {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--secondary-text-color);
+            animation: bounce 2s infinite;
+            z-index: 20;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .scroll-down-arrow.visible { opacity: 1; }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-15px); }
+            60% { transform: translateX(-50%) translateY(-10px); }
+        }
+        
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .content { padding: 0 1rem; }
+            .content h1 { font-size: 1.75rem; min-height: auto; }
+            .content h2 { font-size: 2.25rem; }
+            .content p, .content .sub-heading { font-size: 1rem; }
+            #dot-nav { right: 1rem; }
+            #logo.top-left { left: 1.5rem; top: 1.5rem; }
+            .contact-link { font-size: 1.75rem; }
+            #sticky-contact-btn { top: 1.5rem; right: 1.5rem; }
+            
+            #slide-8 .content, #slide-9 .content {
+                padding-top: 4rem;
+            }
+            #slide-8 .metrics-grid {
+                flex-direction: column;
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+            #slide-8 h2, #slide-9 h2 {
+                font-size: 1.75rem;
+                margin-bottom: 0;
+            }
+            #slide-8 .metric-item .number { font-size: 2rem; }
+            .logo-grid { gap: 1.5rem; }
+            .logo-row { flex-wrap: wrap; gap: 2rem; }
+            .partner-logo { max-height: 20px; }
+            
+            #slide-4 h2 { font-size: 1.75rem; }
+            .framework-steps { font-size: 1.75rem; }
+        }
+    </style>
+</head>
+<body>
+    <div id="logo">Operon<span class="dot">.</span></div>
+    <a href="mailto:consult@operonhq.com" id="sticky-contact-btn">Get in touch</a>
+    
+    <nav id="dot-nav"></nav>
+
+    <div class="scroll-container">
+        <!-- Slide 1: Logo Animation Start -->
+        <section id="slide-1" class="section animated-scroll"></section>
+
+        <!-- Slide 2: Main Claim -->
+        <section id="slide-2" class="section animated-scroll">
+            <div class="content">
+                <h1>We are not an AI <span id="typing-words" class="typing-text"></span> company.</h1>
+                <p id="p-slide2"></p>
+            </div>
+        </section>
+
+        <!-- Slide 3: Philosophy -->
+        <section id="slide-3" class="section animated-scroll">
+            <div class="content">
+                <h2>AI Built like <span class="highlight-blue">Biology</span>.</h2>
+                <p class="sub-heading">Inspired by nature’s original operating system. Operon builds modular, adaptive AI infrastructure that evolves with your business.</p>
+            </div>
+        </section>
+
+        <!-- Slide 4: Intro to Process -->
+        <section id="slide-4" class="section animated-scroll">
+            <div class="content">
+                <h2 class="gradient-text">OAI-3D<span class="trademark">™</span> Framework</h2>
+                <div class="framework-steps">
+                    <span class="step highlight-blue">Diagnosis</span>
+                    <span class="arrow">↓</span>
+                    <span class="step highlight-blue">Develop</span>
+                    <span class="arrow">↓</span>
+                    <span class="step highlight-blue">Deploy</span>
+                </div>
+                <p class="sub-heading">Our proprietary framework for guiding companies through a successful AI Transformation Journey.</p>
+            </div>
+        </section>
+
+        <!-- Slide 5: Diagnosis -->
+        <section id="slide-5" class="section">
+            <div class="content">
+                <div class="animated-symbol-wrapper">
+                    <svg viewBox="-20 -20 180 180">
+                      <g class="symbol symbol-diagnose">
+                        <path d="M68.5,32.4C83.2,28.7,93,42.7,95,53.2c2,10.5-6.7,28.2-12.2,34.8c-5.5,6.6-18.4,12.2-28.7,11.3 c-10.3-1-20.4-9.3-24.3-19.1S23,59,29.9,49.6S53.8,36,68.5,32.4z"/>
+                        <path d="M63.2,12.1c0,0,16.4,2,24.3,10.9"/><path d="M37.9,88.7c0,0-11.8-12.2-6.5-22.3"/><path d="M103.1,64.9c0,0,13.2-1.3,19.1,10.4"/><path d="M24.8,40.7c0,0-13.7,11.3-4.4,20.2"/></g>
+                      <g class="symbol symbol-develop">
+                        <polyline points="47,42 27,62 47,82"/><polyline points="93,42 113,62 93,82"/></g></g>
+                      <g class="symbol symbol-deploy">
+                         <!-- Centered Rocket Icon -->
+                        <path d="M67,115.3l-5.3-21.2c-0.5-2-2.3-3.4-4.3-3.4H38.6c-2.1,0-3.8,1.4-4.3,3.4L29,115.3"/>
+                        <path d="M64.6,90.6l-2-8.1C62.1,80.4,60,79,57.8,79H46.2c-2.1,0-3.9,1.4-4.4,3.5l-2,8.1"/>
+                        <path d="M70.8,90.6L76,25.4c0.2-2.1-1.4-4-3.5-4.2C70.4,21,68.5,22.4,68.2,24.5l-13,51.8"/>
+                        <path d="M43.2,76.3L30.1,24.5c-0.2-2.1-2.1-3.6-4.2-3.5c-2.1,0.2-3.6,2.1-3.5,4.2L27.6,90.6"/>
+                        <path d="M52,15.7C52,9.2,57.2,4,63.7,4S75.5,9.2,75.5,15.7"/>
+                      </g>
+                    </svg>
+                </div>
+                <h2><span class="highlight-word">Diagnosis.</span></h2>
+                <p class="sub-heading">Comprehensive audit to identify high-impact AI opportunities.</p>
+            </div>
+        </section>
+
+        <!-- Slide 6: Develop -->
+        <section id="slide-6" class="section">
+             <div class="content">
+                <div class="animated-symbol-wrapper">
+                    <!-- Cloned content will be the same as above -->
+                </div>
+                 <h2><span class="highlight-word">Develop.</span></h2>
+                 <p class="sub-heading">Core consulting and implementation of AI solutions.</p>
+            </div>
+        </section>
+
+        <!-- Slide 7: Deploy -->
+        <section id="slide-7" class="section">
+             <div class="content">
+                 <div class="animated-symbol-wrapper">
+                     <!-- Cloned content will be the same as above -->
+                 </div>
+                 <h2><span class="highlight-word">Deploy.</span></h2>
+                 <p class="sub-heading">Final rollout, team training, and ongoing support.</p>
+            </div>
+        </section>
+        
+        <!-- Slide 8: Results -->
+        <section id="slide-8" class="section animated-scroll">
+             <div class="content">
+                <h2 id="slide-8-title">We don't sell AI. <br>We <i class="highlight-blue">sell Results</i>.</h2>
+                <div class="metrics-grid">
+                    <div class="metric-item">
+                        <div class="number" data-target="300">0</div>
+                        <div class="label">Professionals upskilled in AI &<br>Automations via our community</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="number" data-target="240">0</div>
+                        <div class="label">Businesses transformed into<br>AI-first companies</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="number" data-target="35">0</div>
+                        <div class="label">Bespoke AI solutions<br>developed</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 9: Team -->
+        <section id="slide-9" class="section animated-scroll">
+            <div class="content">
+                 <h2>Our expertise, curated from <br>best-in-class <strong class="highlight-blue">industry practices.</strong></h2>
+                 <div class="logo-grid">
+                    <div class="logo-row">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Yale_University_logo.svg" alt="Yale Logo" class="partner-logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Siemens-logo.svg" alt="Siemens Logo" class="partner-logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft Logo" class="partner-logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Shopify_logo_2018.svg" alt="Shopify Logo" class="partner-logo">
+                    </div>
+                    <div class="logo-row">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Boston_Consulting_Group_2020_logo.svg" alt="BCG Logo" class="partner-logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9d/KPMG_logo.svg" alt="KPMG Logo" class="partner-logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Deloitte.svg" alt="Deloitte Logo" class="partner-logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Logo-pwc.png" alt="PwC Logo" class="partner-logo">
+                    </div>
+                 </div>
+            </div>
+        </section>
+
+        <!-- Slide 10: Partnership -->
+        <section id="slide-10" class="section animated-scroll">
+             <div class="content">
+                <h1>The best AI systems <br>are built <strong class="highlight-blue">side by side.</strong></h1>
+            </div>
+        </section>
+        
+        <!-- Slide 11: Contact -->
+        <section id="slide-11" class="section animated-scroll">
+            <div class="content">
+                <a href="mailto:consult@operonhq.com" class="contact-link">Let's build.</a>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const scrollContainer = document.querySelector('.scroll-container');
+            const sections = document.querySelectorAll('.section');
+            const logo = document.getElementById('logo');
+            const dotNav = document.getElementById('dot-nav');
+            const stickyBtn = document.getElementById('sticky-contact-btn');
+            
+            // --- JAVASCRIPT-DRIVEN ANIMATION SETUP ---
+            sections.forEach((section) => {
+                const index = Array.from(sections).indexOf(section);
+                // Slides 5, 6, 7 are at indices 4, 5, 6
+                if (![4, 5, 6].includes(index)) {
+                    section.classList.add('animated-scroll');
+                }
+            });
+
+            // --- Clone and place animated symbol ---
+            const symbolWrappers = document.querySelectorAll('.animated-symbol-wrapper');
+            if (symbolWrappers.length > 1) {
+                const firstWrapperContent = symbolWrappers[0].innerHTML;
+                for (let i = 1; i < symbolWrappers.length; i++) {
+                    symbolWrappers[i].innerHTML = firstWrapperContent;
+                }
+            }
+
+            // --- Typewriter function for one-time use ---
+            function typeWriterOnce(element, text, i, callback) {
+                if (i < text.length) {
+                    element.innerHTML = text.substring(0, i + 1) + '<span class="blinking-cursor"></span>';
+                    setTimeout(() => typeWriterOnce(element, text, i + 1, callback), 60);
+                } else if (typeof callback == 'function') {
+                    element.innerHTML = text;
+                    callback();
+                }
+            }
+            
+            // --- Logic for cycling words ---
+            const typingWordsElement = document.getElementById('typing-words');
+            const subtitleElement = document.getElementById('p-slide2');
+            const wordsToType = ["Consulting", "Education", "Software", "Development"];
+            let wordIndex = 0, charIndex = 0, isDeleting = false, secondLineAnimated = false, slide2Active = false;
+
+            function cycleWords() {
+                if (!slide2Active || !typingWordsElement) return;
+                const currentWord = wordsToType[wordIndex];
+                const typeSpeed = isDeleting ? 70 : 100;
+
+                if (isDeleting) {
+                    typingWordsElement.innerHTML = currentWord.substring(0, charIndex - 1) + '<span class="blinking-cursor"></span>';
+                    charIndex--;
+                } else {
+                    typingWordsElement.innerHTML = currentWord.substring(0, charIndex + 1) + '<span class="blinking-cursor"></span>';
+                    charIndex++;
+                }
+
+                if (!isDeleting && charIndex === currentWord.length) {
+                    if (wordIndex === wordsToType.length - 1 && !secondLineAnimated) {
+                        secondLineAnimated = true;
+                        typeWriterOnce(subtitleElement, "We are all of the above.", 0, () => {});
+                    }
+                    setTimeout(() => { isDeleting = true; }, 700);
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    wordIndex = (wordIndex + 1) % wordsToType.length;
+                }
+                setTimeout(cycleWords, typeSpeed);
+            }
+
+            // --- Animate numbers on scroll ---
+            function animateNumbers() {
+                const numbers = document.querySelectorAll('.metric-item .number');
+                numbers.forEach(number => {
+                    const target = +number.getAttribute('data-target');
+                    const duration = 1500;
+                    const stepTime = Math.max(1, Math.abs(Math.floor(duration / target)));
+                    let current = 0;
+                    const timer = setInterval(() => {
+                        current += 1;
+                        if (current >= target) {
+                            number.textContent = target + '+'; // Add '+' here
+                            clearInterval(timer);
+                        } else {
+                            number.textContent = current;
+                        }
+                    }, stepTime);
+                });
+            }
+
+            // --- Dot Navigation ---
+            sections.forEach((section, index) => {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                dot.dataset.index = index;
+                dot.addEventListener('click', () => sections[index].scrollIntoView({ behavior: 'smooth' }));
+                dotNav.appendChild(dot);
+            });
+            const navDots = document.querySelectorAll('#dot-nav .dot');
+
+            function updateNav(index) {
+                navDots.forEach(dot => dot.classList.remove('active'));
+                if (navDots[index]) navDots[index].classList.add('active');
+            }
+
+            // --- Intersection Observer ---
+            let metricsAnimated = false;
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const index = Array.from(sections).indexOf(entry.target);
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        updateNav(index);
+                        
+                        logo.classList.toggle('top-left', index > 0);
+                        stickyBtn.classList.toggle('visible', index > 0);
+
+                        // Animated Symbol State
+                        const symbolContainers = document.querySelectorAll('.animated-symbol-wrapper');
+                        symbolContainers.forEach(container => {
+                          container.classList.remove('state-diagnosis', 'state-develop', 'state-deploy');
+                          if(index === 4) container.classList.add('state-diagnosis');
+                          if(index === 5) container.classList.add('state-develop');
+                          if(index === 6) container.classList.add('state-deploy');
+                        });
+
+                        if (index === 1 && !slide2Active) {
+                            slide2Active = true;
+                            setTimeout(cycleWords, 200);
+                        }
+                        if (index === 7 && !metricsAnimated) {
+                            metricsAnimated = true;
+                            animateNumbers();
+                        }
+                    } else {
+                         entry.target.classList.remove('visible');
+                    }
+                });
+            }, { threshold: 0.6 });
+
+            sections.forEach(section => observer.observe(section));
+            
+            // --- Initial State ---
+            setTimeout(() => {
+                if(scrollContainer.scrollTop === 0) {
+                    sections[0].classList.add('visible');
+                    updateNav(0);
+                }
+            }, 100);
+        });
+    </script>
+</body>
+</html>
