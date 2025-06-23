@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Operon - AI Built Like Biology</title>
-    <!-- Font changed back to Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color-start: #1f2023; /* Original Lighter center of gradient */
-            --bg-color-end: #111113;   /* Original Darker edge of gradient */
-            --text-color: #F9FAFB;     /* Original Off-white (gray-50) */
-            --accent-color: #57cbff;   /* Unified bright blue for all accents */
-            --secondary-text-color: #9CA3AF; /* Original gray-400 */
+            /* --- MODIFIED for a more "electric" feel --- */
+            --bg-color-start: #000000; /* Deep Purple */
+            --bg-color-mid: #000B18;   /* Navy Blue */
+            --bg-color-end: #00172D;   /* Original Dark Blue */
+            --text-color: #F9FAFB;
+            --accent-color: #57cbff;
+            --secondary-text-color: #9CA3AF;
         }
 
         html, body {
@@ -20,11 +21,20 @@
             padding: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden; /* Prevent default scrollbars */
-            background: var(--bg-color-end); /* Fallback */
-            background: radial-gradient(ellipse at center, var(--bg-color-start) 0%, var(--bg-color-end) 70%);
+            overflow: hidden;
             color: var(--text-color);
-            font-family: 'Inter', sans-serif; /* Font updated back to Inter */
+            font-family: 'Inter', sans-serif;
+            /* --- MODIFIED for animated gradient --- */
+            background: linear-gradient(45deg, var(--bg-color-end), var(--bg-color-mid), var(--bg-color-end), var(--bg-color-start));
+            background-size: 300% 300%;
+            animation: animateGradient 15s ease-in-out infinite;
+        }
+
+        /* --- NEW Keyframes for the animation --- */
+        @keyframes animateGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .scroll-container {
@@ -47,20 +57,20 @@
             box-sizing: border-box;
             opacity: 0;
             /* All sections start with no transform */
-            transform: translateY(0); 
+            transform: translateY(0);
             transition: opacity 0.8s ease-out;
         }
-        
+
         .section.animated-scroll {
-             transform: translateY(20px);
-             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
         
         .section.visible {
             opacity: 1;
             transform: translateY(0);
         }
-        
+
         /* --- STICKY BUTTON --- */
         #sticky-contact-btn {
             position: fixed;
@@ -110,7 +120,7 @@
             font-size: 1.5rem;
             transform: translate(0, 0);
         }
-        
+
         /* Content styling */
         .content { max-width: 1000px; /* Increased width to prevent wrapping */ }
         .content h1 {
@@ -149,7 +159,76 @@
             font-size: 1.5rem;
             vertical-align: super;
         }
+
+        /* --- TEXT ANIMATION STYLES --- */
         
+        /* Digital Glitch Effect */
+        .glitch-text {
+            position: relative;
+            display: inline-block;
+        }
+        .glitch-text::before, .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: var(--bg-color-mid);
+        }
+        .glitch-text::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff00c1;
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+        }
+        .glitch-text::after {
+            left: -2px;
+            text-shadow: -2px 0 #00fff9;
+            animation: glitch-anim-2 2s infinite linear alternate-reverse;
+        }
+        @keyframes glitch-anim-1 {
+            0% { clip-path: inset(45% 0 50% 0); } 20% { clip-path: inset(60% 0 10% 0); } 40% { clip-path: inset(20% 0 5% 0); }
+            60% { clip-path: inset(90% 0 1% 0); } 80% { clip-path: inset(30% 0 40% 0); } 100% { clip-path: inset(70% 0 25% 0); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip-path: inset(5% 0 80% 0); } 20% { clip-path: inset(90% 0 5% 0); } 40% { clip-path: inset(40% 0 30% 0); }
+            60% { clip-path: inset(20% 0 70% 0); } 80% { clip-path: inset(80% 0 5% 0); } 100% { clip-path: inset(10% 0 85% 0); }
+        }
+
+        /* Animated Gradient */
+        .gradient-text-animated {
+            background: linear-gradient(90deg, var(--text-color), var(--accent-color), var(--text-color));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-scroll 3s linear infinite;
+        }
+        @keyframes gradient-scroll {
+            to { background-position: -200% center; }
+        }
+
+        /* DNA Weave */
+        .dna-weave-text {
+            display: inline-block;
+            animation: dna-weave 4s ease-in-out infinite;
+        }
+        @keyframes dna-weave {
+            0%, 100% {
+                text-shadow: -1px 1px 4px #00fff9, 1px -1px 4px #ff00c1;
+            }
+            25% {
+                text-shadow: 1px 1px 4px #00fff9, -1px -1px 4px #ff00c1;
+            }
+            50% {
+                text-shadow: 1px -1px 4px #00fff9, -1px 1px 4px #ff00c1;
+            }
+            75% {
+                text-shadow: -1px -1px 4px #00fff9, 1px 1px 4px #ff00c1;
+            }
+        }
+
         /* Typing effect */
         .typing-text { color: var(--accent-color); font-weight: 700; }
         .blinking-cursor {
@@ -157,8 +236,8 @@
             animation: blink-caret .75s step-end infinite;
         }
         @keyframes blink-caret {
-          from, to { border-color: transparent }
-          50% { border-color: var(--accent-color); }
+            from, to { border-color: transparent }
+            50% { border-color: var(--accent-color); }
         }
 
         /* Side Navigation */
@@ -184,7 +263,7 @@
             background-color: var(--text-color);
             transform: scale(1.5);
         }
-        
+
         /* --- OAI-3D Framework Styling --- */
         #slide-4 h2 {
             font-size: 2.5rem;
@@ -227,29 +306,62 @@
             height: 100%;
             overflow: visible;
         }
-        .animated-symbol-wrapper .symbol {
+
+        .symbol-part {
             fill: none;
             stroke: var(--accent-color);
             stroke-width: 2;
             stroke-linecap: round;
             stroke-linejoin: round;
-            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
         }
-        .state-diagnosis .symbol-diagnose,
-        .state-develop .symbol-develop,
-        .state-deploy .symbol-deploy {
-            opacity: 1;
-            transform: scale(1);
+        
+        @keyframes pulse-glow {
+             0%, 100% {
+                filter: drop-shadow(0 0 2px var(--accent-color));
+            }
+            50% {
+                filter: drop-shadow(0 0 8px var(--accent-color));
+            }
         }
-        .state-diagnosis .symbol:not(.symbol-diagnose),
-        .state-develop .symbol:not(.symbol-develop),
-        .state-deploy .symbol:not(.symbol-deploy) {
-            opacity: 0;
-            transform: scale(0.5);
-            position: absolute;
+        
+        /* NEW Continuous Draw-in/out Keyframes */
+        @keyframes draw-in-out-diag {
+            0%, 100% { stroke-dashoffset: 250; }
+            50% { stroke-dashoffset: 0; }
+        }
+        @keyframes draw-in-out-dev {
+            0%, 100% { stroke-dashoffset: 65; }
+            50% { stroke-dashoffset: 0; }
+        }
+        @keyframes draw-in-out-dep {
+            0%, 100% { stroke-dashoffset: 150; }
+            50% { stroke-dashoffset: 0; }
+        }
+        
+        /* Diagnosis Icon Animation */
+        #slide-5 .symbol-part {
+            stroke-dasharray: 250;
+        }
+        #slide-5.visible .symbol-part {
+            animation: draw-in-out-diag 4s ease-in-out infinite, pulse-glow 2.5s ease-in-out infinite;
         }
 
-
+        /* Develop Icon Animation */
+        #slide-6 .symbol-part {
+            stroke-dasharray: 65;
+        }
+        #slide-6.visible .symbol-part {
+            animation: draw-in-out-dev 3s ease-in-out infinite, pulse-glow 2.5s ease-in-out infinite;
+        }
+        
+        /* Deploy Icon Animation */
+        #slide-7 .symbol-part {
+            stroke-dasharray: 150;
+        }
+        #slide-7.visible .symbol-part {
+             animation: draw-in-out-dep 4s ease-in-out infinite, pulse-glow 2.5s ease-in-out infinite;
+        }
+      
         /* --- METRICS SECTION --- */
         .metrics-grid {
             display: flex;
@@ -274,28 +386,32 @@
             line-height: 1.4;
             color: var(--secondary-text-color);
         }
-        
-        /* --- TEAM LOGOS SECTION --- */
+
+        /* --- TEAM LOGOS SECTION (MODIFIED FOR SCROLLING) --- */
         .logo-grid {
-            display: flex;
-            flex-direction: column; /* Stack rows vertically */
-            justify-content: center;
-            align-items: center;
-            gap: 2rem; /* Space between rows */
             margin-top: 3rem;
+            overflow: hidden;
+            -webkit-mask-image: linear-gradient(to right, transparent, white 10%, white 90%, transparent);
+            mask-image: linear-gradient(to right, transparent, white 10%, white 90%, transparent);
         }
+
         .logo-row {
             display: flex;
-            justify-content: center;
+            width: max-content;
+            gap: 4rem;
             align-items: center;
-            gap: 2.5rem; /* Space between logos */
-            width: 100%;
+            animation: marquee 40s linear infinite;
+        }
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
         }
         .partner-logo {
             max-height: 35px;
             width: auto;
             transition: filter 0.3s ease;
             filter: grayscale(1) opacity(0.7);
+            flex-shrink: 0; /* Prevent logos from shrinking */
         }
         .partner-logo:hover {
             filter: none;
@@ -346,11 +462,11 @@
             40% { transform: translateX(-50%) translateY(-15px); }
             60% { transform: translateX(-50%) translateY(-10px); }
         }
-        
+
         /* Mobile Responsive Styles */
         @media (max-width: 768px) {
             .content { padding: 0 1rem; }
-            .content h1 { font-size: 1.75rem; min-height: auto; }
+            .content h1 { font-size: 1.5rem; min-height: auto; } /* MODIFIED: Reduced font size */
             .content h2 { font-size: 2.25rem; }
             .content p, .content .sub-heading { font-size: 1rem; }
             #dot-nav { right: 1rem; }
@@ -358,6 +474,10 @@
             .contact-link { font-size: 1.75rem; }
             #sticky-contact-btn { top: 1.5rem; right: 1.5rem; }
             
+            #slide-10 .content .anim-example {
+                font-size: 1.5rem;
+            }
+
             #slide-8 .content, #slide-9 .content {
                 padding-top: 4rem;
             }
@@ -366,15 +486,24 @@
                 gap: 1rem;
                 margin-top: 1rem;
             }
+            #slide-8 .metric-item {
+                flex-basis: auto;
+            }
             #slide-8 h2, #slide-9 h2 {
                 font-size: 1.75rem;
                 margin-bottom: 0;
             }
             #slide-8 .metric-item .number { font-size: 2rem; }
-            .logo-grid { gap: 1.5rem; }
-            .logo-row { flex-wrap: wrap; gap: 2rem; }
-            .partner-logo { max-height: 20px; }
-            
+
+            /* --- MODIFIED for logo scroller on mobile --- */
+            .logo-row {
+                gap: 2.5rem;
+                animation-duration: 30s;
+            }
+            .partner-logo {
+                max-height: 20px;
+            }
+
             #slide-4 h2 { font-size: 1.75rem; }
             .framework-steps { font-size: 1.75rem; }
         }
@@ -383,14 +512,12 @@
 <body>
     <div id="logo">Operon<span class="dot">.</span></div>
     <a href="mailto:consult@operonhq.com" id="sticky-contact-btn">Get in touch</a>
-    
+
     <nav id="dot-nav"></nav>
 
     <div class="scroll-container">
-        <!-- Slide 1: Logo Animation Start -->
         <section id="slide-1" class="section animated-scroll"></section>
 
-        <!-- Slide 2: Main Claim -->
         <section id="slide-2" class="section animated-scroll">
             <div class="content">
                 <h1>We are not an AI <span id="typing-words" class="typing-text"></span> company.</h1>
@@ -398,15 +525,13 @@
             </div>
         </section>
 
-        <!-- Slide 3: Philosophy -->
         <section id="slide-3" class="section animated-scroll">
             <div class="content">
-                <h2>AI Built like <span class="highlight-blue">Biology</span>.</h2>
+                 <h2>AI Built like <span class="highlight-blue dna-weave-text">Biology.</span></h2>
                 <p class="sub-heading">Inspired by nature’s original operating system. Operon builds modular, adaptive AI infrastructure that evolves with your business.</p>
             </div>
         </section>
 
-        <!-- Slide 4: Intro to Process -->
         <section id="slide-4" class="section animated-scroll">
             <div class="content">
                 <h2 class="gradient-text">OAI-3D<span class="trademark">™</span> Framework</h2>
@@ -421,23 +546,16 @@
             </div>
         </section>
 
-        <!-- Slide 5: Diagnosis -->
-        <section id="slide-5" class="section">
+        <section id="slide-5" class="section animated-scroll">
             <div class="content">
                 <div class="animated-symbol-wrapper">
                     <svg viewBox="-20 -20 180 180">
-                      <g class="symbol symbol-diagnose">
-                        <path d="M68.5,32.4C83.2,28.7,93,42.7,95,53.2c2,10.5-6.7,28.2-12.2,34.8c-5.5,6.6-18.4,12.2-28.7,11.3 c-10.3-1-20.4-9.3-24.3-19.1S23,59,29.9,49.6S53.8,36,68.5,32.4z"/>
-                        <path d="M63.2,12.1c0,0,16.4,2,24.3,10.9"/><path d="M37.9,88.7c0,0-11.8-12.2-6.5-22.3"/><path d="M103.1,64.9c0,0,13.2-1.3,19.1,10.4"/><path d="M24.8,40.7c0,0-13.7,11.3-4.4,20.2"/></g>
-                      <g class="symbol symbol-develop">
-                        <polyline points="47,42 27,62 47,82"/><polyline points="93,42 113,62 93,82"/></g></g>
-                      <g class="symbol symbol-deploy">
-                         <!-- Centered Rocket Icon -->
-                        <path d="M67,115.3l-5.3-21.2c-0.5-2-2.3-3.4-4.3-3.4H38.6c-2.1,0-3.8,1.4-4.3,3.4L29,115.3"/>
-                        <path d="M64.6,90.6l-2-8.1C62.1,80.4,60,79,57.8,79H46.2c-2.1,0-3.9,1.4-4.4,3.5l-2,8.1"/>
-                        <path d="M70.8,90.6L76,25.4c0.2-2.1-1.4-4-3.5-4.2C70.4,21,68.5,22.4,68.2,24.5l-13,51.8"/>
-                        <path d="M43.2,76.3L30.1,24.5c-0.2-2.1-2.1-3.6-4.2-3.5c-2.1,0.2-3.6,2.1-3.5,4.2L27.6,90.6"/>
-                        <path d="M52,15.7C52,9.2,57.2,4,63.7,4S75.5,9.2,75.5,15.7"/>
+                      <g>
+                        <path class="symbol-part" d="M68.5,32.4C83.2,28.7,93,42.7,95,53.2c2,10.5-6.7,28.2-12.2,34.8c-5.5,6.6-18.4,12.2-28.7,11.3 c-10.3-1-20.4-9.3-24.3-19.1S23,59,29.9,49.6S53.8,36,68.5,32.4z"/>
+                        <path class="symbol-part" d="M63.2,12.1c0,0,16.4,2,24.3,10.9"/>
+                        <path class="symbol-part" d="M37.9,88.7c0,0-11.8-12.2-6.5-22.3"/>
+                        <path class="symbol-part" d="M103.1,64.9c0,0,13.2-1.3,19.1,10.4"/>
+                        <path class="symbol-part" d="M24.8,40.7c0,0-13.7,11.3-4.4,20.2"/>
                       </g>
                     </svg>
                 </div>
@@ -446,32 +564,45 @@
             </div>
         </section>
 
-        <!-- Slide 6: Develop -->
-        <section id="slide-6" class="section">
+        <section id="slide-6" class="section animated-scroll">
              <div class="content">
                 <div class="animated-symbol-wrapper">
-                    <!-- Cloned content will be the same as above -->
+                     <svg viewBox="-20 -20 180 180">
+                        <g>
+                          <polyline class="symbol-part" points="47,42 27,62 47,82"/>
+                          <polyline class="symbol-part" points="93,42 113,62 93,82"/>
+                        </g>
+                    </svg>
                 </div>
                  <h2><span class="highlight-word">Develop.</span></h2>
                  <p class="sub-heading">Core consulting and implementation of AI solutions.</p>
             </div>
         </section>
 
-        <!-- Slide 7: Deploy -->
-        <section id="slide-7" class="section">
+        <section id="slide-7" class="section animated-scroll">
              <div class="content">
                  <div class="animated-symbol-wrapper">
-                     <!-- Cloned content will be the same as above -->
+                     <svg viewBox="-20 -20 180 180">
+                        <g>
+                          <path class="symbol-part" d="M67,115.3l-5.3-21.2c-0.5-2-2.3-3.4-4.3-3.4H38.6c-2.1,0-3.8,1.4-4.3,3.4L29,115.3"/>
+                          <path class="symbol-part" d="M70.8,90.6L76,25.4c0.2-2.1-1.4-4-3.5-4.2C70.4,21,68.5,22.4,68.2,24.5l-13,51.8"/>
+                          <path class="symbol-part" d="M43.2,76.3L30.1,24.5c-0.2-2.1-2.1-3.6-4.2-3.5c-2.1,0.2-3.6,2.1-3.5,4.2L27.6,90.6"/>
+                          <path class="symbol-part" d="M52,15.7C52,9.2,57.2,4,63.7,4S75.5,9.2,75.5,15.7"/>
+                        </g>
+                    </svg>
                  </div>
                  <h2><span class="highlight-word">Deploy.</span></h2>
                  <p class="sub-heading">Final rollout, team training, and ongoing support.</p>
             </div>
         </section>
-        
-        <!-- Slide 8: Results -->
+
+
         <section id="slide-8" class="section animated-scroll">
              <div class="content">
-                <h2 id="slide-8-title">We don't sell AI. <br>We <i class="highlight-blue">sell Results</i>.</h2>
+                <h2 id="slide-8-title">
+                    <span class="glitch-text" data-text="We don't sell AI.">We don't sell AI.</span>
+                    <br>We <i class="highlight-blue">sell Results</i>.
+                </h2>
                 <div class="metrics-grid">
                     <div class="metric-item">
                         <div class="number" data-target="300">0</div>
@@ -489,35 +620,41 @@
             </div>
         </section>
 
-        <!-- Slide 9: Team -->
         <section id="slide-9" class="section animated-scroll">
             <div class="content">
-                 <h2>Our expertise, curated from <br>best-in-class <strong class="highlight-blue">industry practices.</strong></h2>
-                 <div class="logo-grid">
+                <h2>Our expertise, curated from <br>best-in-class <strong class="highlight-blue">industry practices.</strong></h2>
+                <!-- --- MODIFIED HTML for scrolling logos --- -->
+                <div class="logo-grid">
                     <div class="logo-row">
+                        <!-- Logos Set 1 -->
                         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Yale_University_logo.svg" alt="Yale Logo" class="partner-logo">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Siemens-logo.svg" alt="Siemens Logo" class="partner-logo">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft Logo" class="partner-logo">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Shopify_logo_2018.svg" alt="Shopify Logo" class="partner-logo">
-                    </div>
-                    <div class="logo-row">
+                        <img src="https://freelogopng.com/images/all_img/1655873088shopify-logo-transparent.png" alt="Shopify Logo" class="partner-logo">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Boston_Consulting_Group_2020_logo.svg" alt="BCG Logo" class="partner-logo">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/9/9d/KPMG_logo.svg" alt="KPMG Logo" class="partner-logo">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Deloitte.svg" alt="Deloitte Logo" class="partner-logo">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Logo-pwc.png" alt="PwC Logo" class="partner-logo">
+                        <img src="https://brandlogo.org/wp-content/uploads/2025/05/Deloitte-Icon-White-2016.png.webp" alt="Deloitte Logo" class="partner-logo">
+                        <img src="https://www.pngall.com/wp-content/uploads/15/PWC-Logo-PNG.png" alt="PwC Logo" class="partner-logo">
+                        <!-- Logos Set 2 (Duplicated for seamless loop) -->
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Yale_University_logo.svg" alt="Yale Logo" class="partner-logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Siemens-logo.svg" alt="Siemens Logo" class="partner-logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft Logo" class="partner-logo">
+                        <img src="https://freelogopng.com/images/all_img/1655873088shopify-logo-transparent.png" alt="Shopify Logo" class="partner-logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Boston_Consulting_Group_2020_logo.svg" alt="BCG Logo" class="partner-logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9d/KPMG_logo.svg" alt="KPMG Logo" class="partner-logo">
+                        <img src="https://brandlogo.org/wp-content/uploads/2025/05/Deloitte-Icon-White-2016.png.webp" alt="Deloitte Logo" class="partner-logo">
+                        <img src="https://www.pngall.com/wp-content/uploads/15/PWC-Logo-PNG.png" alt="PwC Logo" class="partner-logo">
                     </div>
-                 </div>
+                </div>
             </div>
         </section>
 
-        <!-- Slide 10: Partnership -->
         <section id="slide-10" class="section animated-scroll">
              <div class="content">
-                <h1>The best AI systems <br>are built <strong class="highlight-blue">side by side.</strong></h1>
+                 <h1>The best AI systems <br>are built <strong class="highlight-blue gradient-text-animated">side by side.</strong></h1>
             </div>
         </section>
-        
-        <!-- Slide 11: Contact -->
+
         <section id="slide-11" class="section animated-scroll">
             <div class="content">
                 <a href="mailto:consult@operonhq.com" class="contact-link">Let's build.</a>
@@ -533,23 +670,12 @@
             const dotNav = document.getElementById('dot-nav');
             const stickyBtn = document.getElementById('sticky-contact-btn');
             
+
+
             // --- JAVASCRIPT-DRIVEN ANIMATION SETUP ---
             sections.forEach((section) => {
-                const index = Array.from(sections).indexOf(section);
-                // Slides 5, 6, 7 are at indices 4, 5, 6
-                if (![4, 5, 6].includes(index)) {
-                    section.classList.add('animated-scroll');
-                }
+                 section.classList.add('animated-scroll');
             });
-
-            // --- Clone and place animated symbol ---
-            const symbolWrappers = document.querySelectorAll('.animated-symbol-wrapper');
-            if (symbolWrappers.length > 1) {
-                const firstWrapperContent = symbolWrappers[0].innerHTML;
-                for (let i = 1; i < symbolWrappers.length; i++) {
-                    symbolWrappers[i].innerHTML = firstWrapperContent;
-                }
-            }
 
             // --- Typewriter function for one-time use ---
             function typeWriterOnce(element, text, i, callback) {
@@ -561,7 +687,7 @@
                     callback();
                 }
             }
-            
+
             // --- Logic for cycling words ---
             const typingWordsElement = document.getElementById('typing-words');
             const subtitleElement = document.getElementById('p-slide2');
@@ -586,7 +712,7 @@
                         secondLineAnimated = true;
                         typeWriterOnce(subtitleElement, "We are all of the above.", 0, () => {});
                     }
-                    setTimeout(() => { isDeleting = true; }, 700);
+                    setTimeout(() => { isDeleting = true; }, 150);
                 } else if (isDeleting && charIndex === 0) {
                     isDeleting = false;
                     wordIndex = (wordIndex + 1) % wordsToType.length;
@@ -615,56 +741,53 @@
             }
 
             // --- Dot Navigation ---
-            sections.forEach((section, index) => {
+            const realSections = Array.from(scrollContainer.children).filter(el => el.matches('.section'));
+            realSections.forEach((section, index) => {
                 const dot = document.createElement('div');
                 dot.classList.add('dot');
-                dot.dataset.index = index;
-                dot.addEventListener('click', () => sections[index].scrollIntoView({ behavior: 'smooth' }));
+                dot.addEventListener('click', () => {
+                     section.scrollIntoView({ behavior: 'smooth' });
+                });
                 dotNav.appendChild(dot);
             });
             const navDots = document.querySelectorAll('#dot-nav .dot');
 
-            function updateNav(index) {
-                navDots.forEach(dot => dot.classList.remove('active'));
-                if (navDots[index]) navDots[index].classList.add('active');
+            function updateNav(activeIndex) {
+                navDots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === activeIndex);
+                });
             }
 
             // --- Intersection Observer ---
             let metricsAnimated = false;
-            const observer = new IntersectionObserver((entries) => {
+            const mainObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    const index = Array.from(sections).indexOf(entry.target);
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        updateNav(index);
+                    if(entry.isIntersecting) {
+                        const el = entry.target;
+                        const index = realSections.indexOf(el);
                         
+                        el.classList.add('visible');
+                        updateNav(index);
+
                         logo.classList.toggle('top-left', index > 0);
                         stickyBtn.classList.toggle('visible', index > 0);
-
-                        // Animated Symbol State
-                        const symbolContainers = document.querySelectorAll('.animated-symbol-wrapper');
-                        symbolContainers.forEach(container => {
-                          container.classList.remove('state-diagnosis', 'state-develop', 'state-deploy');
-                          if(index === 4) container.classList.add('state-diagnosis');
-                          if(index === 5) container.classList.add('state-develop');
-                          if(index === 6) container.classList.add('state-deploy');
-                        });
-
-                        if (index === 1 && !slide2Active) {
+                        
+                        if (el.id === 'slide-2' && !slide2Active) {
                             slide2Active = true;
                             setTimeout(cycleWords, 200);
                         }
-                        if (index === 7 && !metricsAnimated) {
+                        if (el.id === 'slide-8' && !metricsAnimated) {
                             metricsAnimated = true;
                             animateNumbers();
                         }
                     } else {
-                         entry.target.classList.remove('visible');
+                        entry.target.classList.remove('visible');
                     }
                 });
             }, { threshold: 0.6 });
-
-            sections.forEach(section => observer.observe(section));
+            
+            realSections.forEach(sec => mainObserver.observe(sec));
+            
             
             // --- Initial State ---
             setTimeout(() => {
